@@ -290,8 +290,28 @@ style quick_button_text:
 ## to other menus, and to start the game.
 
 screen navigation():
+    imagebutton xalign 0.5 yalign 0.8:
+            idle ("book.png")
+            hover im.Sepia("book.png")
+            action Start()
+
+    imagebutton xalign 0.9 yalign 0.2:
+            idle ("leaf1.png")
+            hover im.Sepia("leaf1_hover.png")
+            action ShowMenu("load")
+
+    imagebutton xalign 0.97 yalign 0.55:
+            idle ("leaf2.png")
+            hover im.Sepia("leaf2_hover.png")
+            action ShowMenu("preferences")
+
+    imagebutton xalign 0.9 yalign 0.93:
+            idle ("leaf3.png")
+            hover im.Sepia("leaf3_hover.png")
+            action Quit(confirm=not main_menu)
 
     vbox:
+
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
@@ -477,7 +497,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+    #use navigation
 
     textbutton _("Return"):
         style "return_button"
@@ -504,10 +524,11 @@ style return_button is navigation_button
 style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
+# ITT!!!!! SUGA
     bottom_padding 45
     top_padding 180
 
-    background "gui/overlay/game_menu.png"
+    background "images/book.jpg"
 
 style game_menu_navigation_frame:
     xsize 420
@@ -558,10 +579,10 @@ screen about():
     ## screen.
     use game_menu(_("About"), scroll="viewport"):
 
-        style_prefix "about"
+
 
         vbox:
-
+            style "menu_style"
             label "[config.name!t]"
             text _("Version [config.version!t]\n")
 
