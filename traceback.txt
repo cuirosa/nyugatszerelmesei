@@ -1,32 +1,107 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script másolata.rpy", line 9, in script
-    "CSUHAJJA [v]"
-KeyError: u'v'
+  File "game/screens.rpy", line 742, in execute
+    screen preferences():
+  File "game/screens.rpy", line 742, in execute
+    screen preferences():
+  File "game/screens.rpy", line 746, in execute
+    use game_menu(_("Preferences"), scroll="viewport"):
+  File "game/screens.rpy", line 446, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 446, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 455, in execute
+    frame:
+  File "game/screens.rpy", line 458, in execute
+    hbox:
+  File "game/screens.rpy", line 459, in execute
+    frame:
+  File "game/screens.rpy", line 462, in execute
+    if scroll == "viewport":
+  File "game/screens.rpy", line 464, in execute
+    viewport:
+  File "game/screens.rpy", line 473, in execute
+    vbox:
+  File "game/screens.rpy", line 474, in execute
+    transclude
+  File "game/screens.rpy", line 746, in execute
+    use game_menu(_("Preferences"), scroll="viewport"):
+  File "game/screens.rpy", line 748, in execute
+    vbox:
+  File "game/screens.rpy", line 748, in keywords
+    vbox:
+NameError: name 'proba' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script másolata.rpy", line 9, in script
-    "CSUHAJJA [v]"
-  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\ast.py", line 694, in execute
-    renpy.exports.say(who, what, *args, **kwargs)
-  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\exports.py", line 1322, in say
-    who(what, *args, **kwargs)
-  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\character.py", line 1114, in __call__
-    what = what_pattern.replace("[what]", sub(what, translate=True))
-  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\character.py", line 1103, in sub
-    return renpy.substitutions.substitute(s, scope=scope, force=force, translate=translate)[0]
-  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\substitutions.py", line 244, in substitute
-    s = formatter.vformat(s, (), kwargs)
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 563, in vformat
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 585, in _vformat
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 646, in get_field
-  File "/home/tom/ab/x64lucid-deps/install/lib/python2.7/string.py", line 605, in get_value
-KeyError: u'v'
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in script
+    python hide:
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\ast.py", line 900, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\python.py", line 1930, in py_exec_bytecode
+    exec bytecode in globals, locals
+  File "renpy/common/_layout/screen_main_menu.rpym", line 28, in <module>
+    python hide:
+  File "renpy/common/_layout/screen_main_menu.rpym", line 35, in _execute_python_hide
+    ui.interact()
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\ui.py", line 289, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 2690, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 3074, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 534, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 534, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 534, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 534, in visit_all
+    d.visit_all(callback, seen)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\screen.py", line 424, in visit_all
+    callback(self)
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\core.py", line 3074, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\screen.py", line 434, in per_interact
+    self.update()
+  File "C:\jóságok\progik\renpy-7.2.2-sdk\renpy\display\screen.py", line 619, in update
+    self.screen.function(**self.scope)
+  File "game/screens.rpy", line 742, in execute
+    screen preferences():
+  File "game/screens.rpy", line 742, in execute
+    screen preferences():
+  File "game/screens.rpy", line 746, in execute
+    use game_menu(_("Preferences"), scroll="viewport"):
+  File "game/screens.rpy", line 446, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 446, in execute
+    screen game_menu(title, scroll=None, yinitial=0.0):
+  File "game/screens.rpy", line 455, in execute
+    frame:
+  File "game/screens.rpy", line 458, in execute
+    hbox:
+  File "game/screens.rpy", line 459, in execute
+    frame:
+  File "game/screens.rpy", line 462, in execute
+    if scroll == "viewport":
+  File "game/screens.rpy", line 464, in execute
+    viewport:
+  File "game/screens.rpy", line 473, in execute
+    vbox:
+  File "game/screens.rpy", line 474, in execute
+    transclude
+  File "game/screens.rpy", line 746, in execute
+    use game_menu(_("Preferences"), scroll="viewport"):
+  File "game/screens.rpy", line 748, in execute
+    vbox:
+  File "game/screens.rpy", line 748, in keywords
+    vbox:
+  File "<screen language>", line 749, in <module>
+NameError: name 'proba' is not defined
 
 Windows-8-6.2.9200
 Ren'Py 7.2.2.491
 A NYUGAT 1.0
-Thu May 23 16:16:02 2019
+Sat May 25 13:47:08 2019

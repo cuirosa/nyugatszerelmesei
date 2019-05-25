@@ -29,9 +29,11 @@ label start:
     menu:
 
         "DRINK":
+            $ renpy.notify('Cheat mode enabled')
             "I drank."
 
         "EAT":
+            
             "I ate."
 
     jump check

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 292: screen expects a non-empty block.
-    screen navigation():
-                        ^
+File "game/screens.rpy", line 583: u'background' is not a keyword argument or valid child for the vbox statement.
+    background "ffffff"
+              ^
 
 Ren'Py Version: Ren'Py 7.2.2.491
-Thu May 23 16:14:44 2019
+Sat May 25 16:47:32 2019

@@ -363,23 +363,23 @@ translate None strings:
 
     # 00gui.rpy:371
     old "Are you sure?"
-    new "Are you sure?"
+    new "Biztos?"
 
     # 00gui.rpy:372
     old "Are you sure you want to delete this save?"
-    new "Are you sure you want to delete this save?"
+    new "Biztos, hogy törölni akarod?"
 
     # 00gui.rpy:373
     old "Are you sure you want to overwrite your save?"
-    new "Are you sure you want to overwrite your save?"
+    new "Biztos, hogy át akarod írni a korábbi mentést?"
 
     # 00gui.rpy:374
     old "Loading will lose unsaved progress.\nAre you sure you want to do this?"
-    new "Loading will lose unsaved progress.\nAre you sure you want to do this?"
+    new "Biztos, hogy be akarod tölteni?"
 
     # 00gui.rpy:375
     old "Are you sure you want to quit?"
-    new "Are you sure you want to quit?"
+    new "Biztos, hogy ki akarsz lépni?"
 
     # 00gui.rpy:376
     old "Are you sure you want to return to the main menu?\nThis will lose unsaved progress."
@@ -391,15 +391,15 @@ translate None strings:
 
     # 00gui.rpy:378
     old "Are you sure you want to begin skipping?"
-    new "Are you sure you want to begin skipping?"
+    new "Biztos, hogy ugrani akarsz?"
 
     # 00gui.rpy:379
     old "Are you sure you want to skip to the next choice?"
-    new "Are you sure you want to skip to the next choice?"
+    new "Biztos, hogy ugrani akarsz?"
 
     # 00gui.rpy:380
     old "Are you sure you want to skip unseen dialogue to the next choice?"
-    new "Are you sure you want to skip unseen dialogue to the next choice?"
+    new "Biztos, hogy ugrani akarsz?"
 
     # 00keymap.rpy:261
     old "Failed to save screenshot as %s."
@@ -1228,4 +1228,3 @@ translate None strings:
     # 00console.rpy:685
     old "long: Print the full representation of objects on the console."
     new "long: Print the full representation of objects on the console."
-

@@ -310,59 +310,6 @@ screen navigation():
             hover im.Sepia("leaf3_hover.png")
             action Quit(confirm=not main_menu)
 
-    vbox:
-
-        style_prefix "navigation"
-
-        xpos gui.navigation_xpos
-        yalign 0.5
-
-        spacing gui.navigation_spacing
-
-        if main_menu:
-
-            textbutton _("Start") action Start()
-
-        else:
-
-            textbutton _("History") action ShowMenu("history")
-
-            textbutton _("Save") action ShowMenu("save")
-
-        textbutton _("Load") action ShowMenu("load")
-
-        textbutton _("Preferences") action ShowMenu("preferences")
-
-        if _in_replay:
-
-            textbutton _("End Replay") action EndReplay(confirm=True)
-
-        elif not main_menu:
-
-            textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
-
-        if renpy.variant("pc"):
-
-            ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
-
-            ## The quit button is banned on iOS and unnecessary on Android.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
-
-
-style navigation_button is gui_button
-style navigation_button_text is gui_button_text
-
-style navigation_button:
-    size_group "navigation"
-    properties gui.button_properties("navigation_button")
-
-
-style navigation_button_text:
-    properties gui.button_text_properties("navigation_button")
-
 
 ## Main Menu screen ############################################################
 ##
@@ -456,11 +403,6 @@ screen game_menu(title, scroll=None, yinitial=0.0):
         style "game_menu_outer_frame"
 
         hbox:
-
-            ## Reserve space for the navigation section.
-            frame:
-                style "game_menu_navigation_frame"
-
             frame:
                 style "game_menu_content_frame"
 
@@ -499,12 +441,13 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
     #use navigation
 
-    textbutton _("Return"):
+    textbutton _("VISSZA"):
         style "return_button"
-
+        text_color "ffffff"
+        text_hover_color "#44270e"
         action Return()
 
-    label title
+    #label title
 
     if main_menu:
         key "game_menu" action ShowMenu("main_menu")
@@ -528,19 +471,20 @@ style game_menu_outer_frame:
     bottom_padding 45
     top_padding 180
 
-    background "images/book.jpg"
-
 style game_menu_navigation_frame:
     xsize 420
     yfill True
 
 style game_menu_content_frame:
-    left_margin 60
+    xalign 0.5
+    yalign 0.5
+    left_margin 60 #ezzel tudom az egész content-et mozgatni odébb
     right_margin 30
     top_margin 15
+    #background "images/book.png"
 
 style game_menu_viewport:
-    xsize 1380
+    xsize 1700 #HEYHO
 
 style game_menu_vscrollbar:
     unscrollable gui.unscrollable
@@ -558,8 +502,8 @@ style game_menu_label_text:
     yalign 0.5
 
 style return_button:
-    xpos gui.navigation_xpos
-    yalign 1.0
+    xpos 0.475
+    yalign 0.9
     yoffset -45
 
 
@@ -630,7 +574,7 @@ screen load():
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
+    default page_name_value = FilePageNameInputValue(pattern=_("{}. Oldal"), auto=_("Automatikus mentés"), quick=_("Gyors mentés"))
 
     use game_menu(title):
 
@@ -721,6 +665,7 @@ style page_label:
 style page_label_text:
     text_align 0.5
     layout "subtitle"
+    color "#ffffff"
     hover_color gui.hover_color
 
 style page_button:
@@ -749,86 +694,71 @@ screen preferences():
 
     use game_menu(_("Preferences"), scroll="viewport"):
 
-        vbox:
-
-            hbox:
-                box_wrap True
-
-                if renpy.variant("pc"):
-
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+        hbox:
+            style "proba"
+            #box_wrap True
+            if renpy.variant("pc"):
 
                 vbox:
+                    yalign 0.4
                     style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                    label _("Megjelenítés")
+                    textbutton _("Window") action Preference("display", "window")
+                    textbutton _("Fullscreen") action Preference("display", "fullscreen")
 
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
-
-                ## Additional vboxes of type "radio_pref" or "check_pref" can be
-                ## added here, to add additional creator-defined preferences.
+            ## Additional vboxes of type "radio_pref" or "check_pref" can be
+            ## added here, to add additional creator-defined preferences.
 
             null height (4 * gui.pref_spacing)
 
-            hbox:
-                style_prefix "slider"
-                box_wrap True
 
-                vbox:
+            style_prefix "slider"
 
-                    label _("Text Speed")
+            vbox:
+                yalign 0.4
+                label _("SZÖVEG SEBESSÉG")
 
-                    bar value Preference("text speed")
+                bar value Preference("text speed")
 
-                    label _("Auto-Forward Time")
+                label _("AUTO-SEBESSÉG")
 
-                    bar value Preference("auto-forward time")
+                bar value Preference("auto-forward time")
 
-                vbox:
+            vbox:
+                yalign 0.4
+                if config.has_music:
+                    label _("ZENE")
 
-                    if config.has_music:
-                        label _("Music Volume")
+                    hbox:
+                        bar value Preference("music volume")
 
-                        hbox:
-                            bar value Preference("music volume")
+                if config.has_sound:
 
-                    if config.has_sound:
+                    label _("HANGEFFEKT")
 
-                        label _("Sound Volume")
+                    hbox:
+                        bar value Preference("sound volume")
 
-                        hbox:
-                            bar value Preference("sound volume")
-
-                            if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
+                        if config.sample_sound:
+                            textbutton _("Test") action Play("sound", config.sample_sound)
 
 
-                    if config.has_voice:
-                        label _("Voice Volume")
+                if config.has_voice:
+                    label _("Voice Volume")
 
-                        hbox:
-                            bar value Preference("voice volume")
+                    hbox:
+                        bar value Preference("voice volume")
 
-                            if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                        if config.sample_voice:
+                            textbutton _("Test") action Play("voice", config.sample_voice)
 
-                    if config.has_music or config.has_sound or config.has_voice:
-                        null height gui.pref_spacing
+                if config.has_music or config.has_sound or config.has_voice:
+                    null height gui.pref_spacing
 
-                        textbutton _("Mute All"):
-                            action Preference("all mute", "toggle")
-                            style "mute_all_button"
+                    textbutton _("Némítás"):
+                        action Preference("all mute", "toggle")
+                        style "mute_all_button"
+                        text_color "ffffff"
 
 
 style pref_label is gui_label
@@ -886,6 +816,7 @@ style check_button:
 
 style check_button_text:
     properties gui.button_text_properties("check_button")
+    color "#000000"
 
 style slider_slider:
     xsize 525
@@ -1191,8 +1122,8 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 150
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                textbutton _("Igen") action yes_action
+                textbutton _("Nem") action no_action
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
@@ -1543,3 +1474,6 @@ style slider_pref_vbox:
 style slider_pref_slider:
     variant "small"
     xsize 900
+
+style proba:
+    ysize 800
